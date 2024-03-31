@@ -2,7 +2,7 @@
 Cat mode for discord
 (Vencord custom plugin)
 
-# Nya
+# What does it do?
 Add "냥" after "다" if after "다" word is ", or . or ? or ! or space or there's no text
 
 나 낙 낚 낛 난 낝 낞 낟 날 낡 낢 낣 낤 낥 낦 낧 남 납 낪 낫 났 낭 낮 낯 낰 낱 낲 낳 will changes to
