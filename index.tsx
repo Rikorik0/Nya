@@ -12,8 +12,6 @@ export default definePlugin({
             name: "dwjk64",
         },
     ],
-    dependencies: ["MessageAccessoriesAPI", "MessagePopoverAPI", "MessageEventsAPI", "ChatInputButtonAPI"],
-    // not used, just here in case some other plugin wants it or w/e
 
     start() {
         this.preSend = addPreSendListener(async (_, message) => {
