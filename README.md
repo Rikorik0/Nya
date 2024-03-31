@@ -14,7 +14,7 @@ Follow the vencord install guide here https://github.com/Vendicated/Vencord/blob
 
 Place the plugins inside the userplugins folder (vencord/src/userplugins) if you don't have the folder, you will be need to make it yourself
 
-Then, build your vencord
+Then, build your vencord (From downloaded Vencord path)
 
 ```shell
 pnpm build
