@@ -34,20 +34,38 @@ var nyaWords = {
     '낳': "냫",
 }
 
+var nyaWords2 = {
+    '다': "다냥",
+    '네': "냥",
+    '내': "냥",
+    '넹': "냥",
+    '넴': "냥",
+    '넵': "냥",
+}
+
+var nyaCharacters = [
+    '.',
+    ',',
+    '?',
+    '!',
+    ' ',
+]
+
 function Nyaize(originalMessage) {
     for (let key in nyaWords) {
         originalMessage = originalMessage.replaceAll(key, nyaWords[key])
     }
 
-    originalMessage = originalMessage.replaceAll("다.", "다냥.")
-    originalMessage = originalMessage.replaceAll("다,", "다냥,")
-    originalMessage = originalMessage.replaceAll("다?", "다냥?")
-    originalMessage = originalMessage.replaceAll("다!", "다냥!")
-    originalMessage = originalMessage.replaceAll("다 ", "다냥 ")
-    //originalMessage = originalMessage.replaceAll("\uB2E4$", "다냥")
+    for (let key in nyaWords2) {
+        originalMessage = originalMessage.replaceAll(key+".", nyaWords2[key]+".")
+        originalMessage = originalMessage.replaceAll(key+",", nyaWords2[key]+",")
+        originalMessage = originalMessage.replaceAll(key+"?", nyaWords2[key]+"?")
+        originalMessage = originalMessage.replaceAll(key+"!", nyaWords2[key]+"!")
+        originalMessage = originalMessage.replaceAll(key+" ", nyaWords2[key]+" ")
 
-    if (originalMessage.endsWith("다")) {
-        originalMessage = originalMessage.slice(0, -1) + "다냥";
+        if (originalMessage.endsWith(key)) {
+            originalMessage = originalMessage.slice(0, -1) + nyaWords2[key];
+        }
     }
 
     return originalMessage;
