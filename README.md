@@ -32,4 +32,4 @@ You can selete discord PTB version if you want. https://discord.com/api/download
 
 Now, enable `Nya` plugin in plugin settings
 
-Have fun!
+*I don't recommend to use this plugin, it has a very dirty script. also it may not work. I made this plugin when I was learning TypeScript*
