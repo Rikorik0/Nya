@@ -41,6 +41,8 @@ var nyaWords2 = {
     '넹': "냥",
     '넴': "냥",
     '넵': "냥",
+    '야': "냥",
+    '냐': "냥",
 }
 
 var nyaCharacters = [
@@ -77,7 +79,7 @@ export default definePlugin({
     authors: [
         {
             id: 687562947790503974n,
-            name: "dwjk64",
+            name: "chumering",
         },
     ],
 
