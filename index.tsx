@@ -54,10 +54,6 @@ var nyaCharacters = [
 ]
 
 function Nyaize(originalMessage) {
-    for (let key in nyaWords) {
-        originalMessage = originalMessage.replaceAll(key, nyaWords[key])
-    }
-
     for (let key in nyaWords2) {
         originalMessage = originalMessage.replaceAll(key+".", nyaWords2[key]+".")
         originalMessage = originalMessage.replaceAll(key+",", nyaWords2[key]+",")
@@ -68,6 +64,10 @@ function Nyaize(originalMessage) {
         if (originalMessage.endsWith(key)) {
             originalMessage = originalMessage.slice(0, -1) + nyaWords2[key];
         }
+    }
+
+    for (let key in nyaWords) {
+        originalMessage = originalMessage.replaceAll(key, nyaWords[key])
     }
 
     return originalMessage;
