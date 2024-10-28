@@ -1,6 +1,7 @@
 # Nya
 Cat mode for discord
 (Vencord custom plugin)
+*Also insipred from misskey cat mode*
 
 # What does it do?
 Add "냥" after "다" if after "다" character is "," or "." or "?" or "!" or space or there's no text
