@@ -28,7 +28,7 @@ Inject your vencord, and plugins to your client
 pnpm inject
 ```
 
-You can selete discord PTB version if you want. https://discord.com/api/download/ptb?platform=win
+You can use [discord PTB](https://discord.com/api/download/ptb?platform=win) version if you want.
 
 Now, enable `Nya` plugin in plugin settings
 
