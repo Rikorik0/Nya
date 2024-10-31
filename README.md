@@ -15,6 +15,14 @@ Replace "네", "넹", "넴" "야" etc. character to "냥" if "네" etc. characte
 # Install Guide
 Follow the vencord install guide [here](https://docs.vencord.dev/installing/)
 
+[for the complicated custom plugin installation guide](https://docs.vencord.dev/installing/custom-plugins/#_top) *(recommended)*
+
+**Make sure your to read warnings before injecting custom plguins**
+
+## Injecting custom plugin
+
+*You can skip this custom plugin installation guide ~~it's better to read installation guide from above~~*
+
 Place the plugins inside the userplugins folder (vencord/src/userplugins) if you don't have the folder, you will be need to make it yourself
 
 Then, build your vencord (From downloaded Vencord path)
@@ -31,8 +39,12 @@ pnpm inject
 
 You can use [discord PTB](https://discord.com/api/download/ptb?platform=win) version if you want.
 
+# Finish
+
 Now, enable `Nya` plugin in plugin settings
 
 **Make your to refresh your vencord client after enable it**
+
+# Disclaimer
 
 *I don't recommend to use this plugin, it has a very dirty script. also it may not work. I made this plugin when I was learning TypeScript*
