@@ -33,4 +33,6 @@ You can use [discord PTB](https://discord.com/api/download/ptb?platform=win) ver
 
 Now, enable `Nya` plugin in plugin settings
 
+**Make your to refresh your vencord client after enable it**
+
 *I don't recommend to use this plugin, it has a very dirty script. also it may not work. I made this plugin when I was learning TypeScript*
