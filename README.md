@@ -4,9 +4,9 @@ Cat mode for discord
 *Also insipred from misskey cat mode*
 
 # What does it do?
-Add "냥" after "다" if after "다" character is "," or "." or "?" or "!" or ";" or space or there's no text
+Add "냥" after "다" (and etc.) if after "다" character is "," or "." or "?" or "!" or ";" or space or there's no text
 
-Replace "네", "넹", "넴" "야" etc. character to "냥" if "네" etc. character's next character is "," or "." or "?" or "!" or space or there's no text
+Replace, "넹", "넴" etc. character to "냥" if "넹" etc. character's next character is "," or "." or "?" or "!" or space or there's no text
 
 나 낙 낚 낛 난 낝 낞 낟 날 낡 낢 낣 낤 낥 낦 낧 남 납 낪 낫 났 낭 낮 낯 낰 낱 낲 낳 will changes to
 
