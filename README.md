@@ -12,9 +12,9 @@ Replace "네", "넹", "넴" "야" etc. character to "냥" if "네" etc. characte
 
 냐 냑 냒 냓 냔 냕 냖 냗 냘 냙 냚 냛 냜 냝 냞 냟 냠 냡 냢 냣 냤 냥 냦 냧 냨 냩 냪 냫
 
-If message starts with "?" or "!" or "." ","
+If message starts with "?" or "!" or "." or "," or ";"
 It will turn to "냥?" or "냥!" or "냥." or "냥,"
-(goes same if message is right after space.) (" ?" or " !" or " ." or " ,")
+(goes same if message is right after space.) (" ?" or " !" or " ." or " ," or " ;")
 
 # Install Guide
 Follow the vencord install guide [here](https://docs.vencord.dev/installing/)
