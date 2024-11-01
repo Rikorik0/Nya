@@ -53,6 +53,14 @@ var nyaCharacters = [
     ' ',
 ]
 
+function replaceQuestionMarkAndExclamation(input: string): string {
+    return input.replace(/(^|\s)([?!]+)/g, (match, p1, p2) => {
+        const firstChar = p2[0];
+        const transformed = firstChar === '?' ? '냥?' : '냥!';
+        return p1 + transformed + p2.slice(1);
+    });
+}
+
 function Nyaize(originalMessage) {
     for (let key in nyaWords2) {
         originalMessage = originalMessage.replaceAll(key+".", nyaWords2[key]+".")
@@ -69,6 +77,8 @@ function Nyaize(originalMessage) {
     for (let key in nyaWords) {
         originalMessage = originalMessage.replaceAll(key, nyaWords[key])
     }
+
+    originalMessage = replaceQuestionMarkAndExclamation(originalMessage)
 
     return originalMessage;
 }
