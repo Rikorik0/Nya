@@ -53,10 +53,17 @@ var nyaCharacters = [
     ' ',
 ]
 
-function replaceQuestionMarkAndExclamation(input: string): string {
-    return input.replace(/(^|\s)([?!]+)/g, (match, p1, p2) => {
+function replacePunctuation(input: string): string { // yeah I used gpt to write this I don't know RegEx
+    return input.replace(/(^|\s)([?!,.]+)/g, (match, p1, p2) => {
         const firstChar = p2[0];
-        const transformed = firstChar === '?' ? '냥?' : '냥!';
+        let transformed;
+        
+        if (firstChar === '?') transformed = '냥?';
+        else if (firstChar === '!') transformed = '냥!';
+        else if (firstChar === ',') transformed = '냥,';
+        else if (firstChar === '.') transformed = '냥.';
+        else transformed = p2;
+        
         return p1 + transformed + p2.slice(1);
     });
 }
@@ -67,6 +74,7 @@ function Nyaize(originalMessage) {
         originalMessage = originalMessage.replaceAll(key+",", nyaWords2[key]+",")
         originalMessage = originalMessage.replaceAll(key+"?", nyaWords2[key]+"?")
         originalMessage = originalMessage.replaceAll(key+"!", nyaWords2[key]+"!")
+        originalMessage = originalMessage.replaceAll(key+";", nyaWords2[key]+";")
         originalMessage = originalMessage.replaceAll(key+" ", nyaWords2[key]+" ")
 
         if (originalMessage.endsWith(key)) {
@@ -78,7 +86,7 @@ function Nyaize(originalMessage) {
         originalMessage = originalMessage.replaceAll(key, nyaWords[key])
     }
 
-    originalMessage = replaceQuestionMarkAndExclamation(originalMessage)
+    originalMessage = replacePunctuation(originalMessage)
 
     return originalMessage;
 }
@@ -89,7 +97,7 @@ export default definePlugin({
     authors: [
         {
             id: 687562947790503974n,
-            name: "chumering",
+            name: "Rikoring",
         },
     ],
 
