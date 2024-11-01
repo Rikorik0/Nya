@@ -23,7 +23,7 @@ Follow the vencord install guide [here](https://docs.vencord.dev/installing/)
 
 *You can skip this custom plugin installation guide ~~it's better to read installation guide from above~~*
 
-Place the plugins inside the userplugins folder (vencord/src/userplugins) if you don't have the folder, you will be need to make it yourself
+Place the unzipped plugin inside the userplugins folder (vencord/src/userplugins) if you don't have the folder, you will be need to make it yourself
 
 Then, build your vencord (From downloaded Vencord path)
 
