@@ -71,7 +71,7 @@ var nyaCharacters = [
 ]
 
 function replacePunctuation(input: string): string { // yeah I used gpt to write this I don't know RegEx
-    return input.replace(/(^|\s)([?!,.;~]+)/g, (match, p1, p2) => {
+    return input.replace(/(^|\s)([?!,.;~^@]+)/g, (match, p1, p2) => {
         const firstChar = p2[0];
         let transformed;
         
@@ -81,6 +81,8 @@ function replacePunctuation(input: string): string { // yeah I used gpt to write
         else if (firstChar === '.') transformed = '냥.';
         else if (firstChar === ';') transformed = '냥;';
         else if (firstChar === '~') transformed = '냥~';
+        else if (firstChar === '^') transformed = '냥^';
+        else if (firstChar === '@') transformed = '냥@';
         else transformed = p2;
         
         return p1 + transformed + p2.slice(1);
@@ -95,6 +97,8 @@ function Nyaize(originalMessage) {
         originalMessage = originalMessage.replaceAll(key+"!", nyaWords2[key]+"!")
         originalMessage = originalMessage.replaceAll(key+";", nyaWords2[key]+";")
         originalMessage = originalMessage.replaceAll(key+"~", nyaWords2[key]+"~")
+        originalMessage = originalMessage.replaceAll(key+"^", nyaWords2[key]+"^")
+        originalMessage = originalMessage.replaceAll(key+"@", nyaWords2[key]+"@")
         originalMessage = originalMessage.replaceAll(key+" ", nyaWords2[key]+" ")
 
         if (originalMessage.endsWith(key)) {
