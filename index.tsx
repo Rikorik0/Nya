@@ -52,6 +52,14 @@ var nyaWords2 = {
     '지': "지냥",
     '라': "라냥",
     '요': "요냥",
+    '가': "가냥",
+    '데': "데냥",
+    '돼': "돼냥",
+    '줘': "줘냥",
+    '마': "마냥",
+    '와': "와냥",
+    '어': "어냥",
+    '자': "자냥",
 }
 
 var nyaCharacters = [
@@ -86,6 +94,7 @@ function Nyaize(originalMessage) {
         originalMessage = originalMessage.replaceAll(key+"?", nyaWords2[key]+"?")
         originalMessage = originalMessage.replaceAll(key+"!", nyaWords2[key]+"!")
         originalMessage = originalMessage.replaceAll(key+";", nyaWords2[key]+";")
+        originalMessage = originalMessage.replaceAll(key+"~", nyaWords2[key]+"~")
         originalMessage = originalMessage.replaceAll(key+" ", nyaWords2[key]+" ")
 
         if (originalMessage.endsWith(key)) {
