@@ -35,14 +35,23 @@ var nyaWords = {
 }
 
 var nyaWords2 = {
-    '다': "다냥",
-    '네': "냥",
     '내': "냥",
     '넹': "냥",
     '넴': "냥",
     '넵': "냥",
-    '야': "냥",
     '냐': "냥",
+    '님': "냥",
+    '니': "냥",
+    '다': "다냥",
+    '까': "까냥",
+    '네': "네냥",
+    '야': "야냥",
+    '꺼': "꺼냥",
+    '래': "래냥",
+    '해': "해냥",
+    '지': "지냥",
+    '라': "라냥",
+    '요': "요냥",
 }
 
 var nyaCharacters = [
@@ -54,7 +63,7 @@ var nyaCharacters = [
 ]
 
 function replacePunctuation(input: string): string { // yeah I used gpt to write this I don't know RegEx
-    return input.replace(/(^|\s)([?!,.]+)/g, (match, p1, p2) => {
+    return input.replace(/(^|\s)([?!,.;~]+)/g, (match, p1, p2) => {
         const firstChar = p2[0];
         let transformed;
         
@@ -62,6 +71,8 @@ function replacePunctuation(input: string): string { // yeah I used gpt to write
         else if (firstChar === '!') transformed = '냥!';
         else if (firstChar === ',') transformed = '냥,';
         else if (firstChar === '.') transformed = '냥.';
+        else if (firstChar === ';') transformed = '냥;';
+        else if (firstChar === '~') transformed = '냥~';
         else transformed = p2;
         
         return p1 + transformed + p2.slice(1);
