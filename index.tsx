@@ -61,6 +61,7 @@ var nyaWords2 = {
     '어': "어냥",
     '자': "자냥",
     '죠': "죠냥",
+    '서': "서냥",
 }
 
 var nyaCharacters = [
