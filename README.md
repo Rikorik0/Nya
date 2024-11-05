@@ -49,7 +49,7 @@ You can use [discord PTB](https://discord.com/api/download/ptb?platform=win) ver
 
 Now, enable `Nya` plugin in plugin settings
 
-**Make your to refresh your vencord client after enable it**
+**Make sure to refresh your vencord client after enable it**
 
 # Disclaimer
 
