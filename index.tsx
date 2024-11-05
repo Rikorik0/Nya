@@ -63,7 +63,7 @@ var nyaWords2 = {
     '죠': "죠냥",
     '서': "서냥",
     '게': "게냥",
-    '임': "임냥",
+    // '임': "임냥",
 }
 
 var nyaCharacters = [
@@ -75,7 +75,7 @@ var nyaCharacters = [
 ]
 
 function replacePunctuation(input: string): string { // yeah I used gpt to write this I don't know RegEx
-    return input.replace(/(^|\s)([?!,.;~^@]+)/g, (match, p1, p2) => {
+    return input.replace(/(^|\s)([?!,.;~^@()]+)/g, (match, p1, p2) => {
         const firstChar = p2[0];
         let transformed;
         
@@ -87,15 +87,42 @@ function replacePunctuation(input: string): string { // yeah I used gpt to write
         else if (firstChar === '~') transformed = '냥~';
         else if (firstChar === '^') transformed = '냥^';
         else if (firstChar === '@') transformed = '냥@';
+        else if (firstChar === '(') transformed = '냥(';
+        else if (firstChar === ')') transformed = '냥)';
         else transformed = p2;
         
         return p1 + transformed + p2.slice(1);
     });
 }
 
+function addNyangAtMWord(sentence: string): string { // Also from GPT
+    return sentence.split(' ').map((word) => {
+        const match = word.match(/^([가-힣]+)([?!,.;~^@()]*)$/);
+
+        if (!match) return word;
+
+        const baseWord = match[1];
+        const punctuation = match[2];
+
+        const lastChar = baseWord[baseWord.length - 1];
+        const charCode = lastChar.charCodeAt(0);
+
+        if (charCode >= 0xAC00 && charCode <= 0xD7A3) {
+            const baseCode = charCode - 0xAC00;
+            const jongseong = baseCode % 28;
+
+            if (jongseong === 16) {
+                return baseWord + "냥" + punctuation;
+            }
+        }
+
+        return word;
+    }).join(' ');
+}
+
 function Nyaize(originalMessage) {
     for (let key in nyaWords2) {
-        originalMessage = originalMessage.replaceAll(key+".", nyaWords2[key]+".")
+        originalMessage = originalMessage.replaceAll(key+".", nyaWords2[key]+".") // yeah I gotta optimize these
         originalMessage = originalMessage.replaceAll(key+",", nyaWords2[key]+",")
         originalMessage = originalMessage.replaceAll(key+"?", nyaWords2[key]+"?")
         originalMessage = originalMessage.replaceAll(key+"!", nyaWords2[key]+"!")
@@ -103,6 +130,8 @@ function Nyaize(originalMessage) {
         originalMessage = originalMessage.replaceAll(key+"~", nyaWords2[key]+"~")
         originalMessage = originalMessage.replaceAll(key+"^", nyaWords2[key]+"^")
         originalMessage = originalMessage.replaceAll(key+"@", nyaWords2[key]+"@")
+        originalMessage = originalMessage.replaceAll(key+"(", nyaWords2[key]+"(")
+        originalMessage = originalMessage.replaceAll(key+")", nyaWords2[key]+")")
         originalMessage = originalMessage.replaceAll(key+" ", nyaWords2[key]+" ")
 
         if (originalMessage.endsWith(key)) {
@@ -115,6 +144,8 @@ function Nyaize(originalMessage) {
     }
 
     originalMessage = replacePunctuation(originalMessage)
+
+    originalMessage = addNyangAtMWord(originalMessage)
 
     return originalMessage;
 }
