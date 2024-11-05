@@ -16,6 +16,8 @@ If message starts with "?" or "!" or "." or "," or ";"
 It will turn to "냥?" or "냥!" or "냥." or "냥,"
 (goes same if message is right after space.) (" ?" or " !" or " ." or " ," or " ;")
 
+(And more, too lazy to write all lol)
+
 # Install Guide
 Follow the vencord install guide [here](https://docs.vencord.dev/installing/)
 
