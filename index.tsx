@@ -63,7 +63,8 @@ var nyaWords2 = {
     '죠': "죠냥",
     '서': "서냥",
     '게': "게냥",
-    // '임': "임냥",
+    '듯': "듯냥",
+    // '임': "임냥", disabled due addNyangAtMWord function
 }
 
 var nyaCharacters = [
