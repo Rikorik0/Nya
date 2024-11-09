@@ -3,6 +3,8 @@ import "./styles.css";
 import { addPreSendListener, removePreSendListener } from "@api/MessageEvents";
 import definePlugin from "@utils/types";
 
+var chaePrefix = "냥"; // make your own custom ~체, you can put like 허~접♥ on it
+
 var nyaWords = {
     '나': "냐",
     '낙': "냑",
@@ -35,35 +37,35 @@ var nyaWords = {
 }
 
 var nyaWords2 = {
-    '내': "냥",
-    '넹': "냥",
-    '넴': "냥",
-    '넵': "냥",
-    '냐': "냥",
-    '님': "냥",
-    '니': "냥",
-    '다': "다냥",
-    '까': "까냥",
-    '네': "네냥",
-    '야': "야냥",
-    '꺼': "꺼냥",
-    '래': "래냥",
-    '해': "해냥",
-    '지': "지냥",
-    '라': "라냥",
-    '요': "요냥",
-    '가': "가냥",
-    '데': "데냥",
-    '돼': "돼냥",
-    '줘': "줘냥",
-    '마': "마냥",
-    '와': "와냥",
-    '어': "어냥",
-    '자': "자냥",
-    '죠': "죠냥",
-    '서': "서냥",
-    '게': "게냥",
-    '듯': "듯냥",
+    '내': chaePrefix,
+    '넹': chaePrefix,
+    '넴': chaePrefix,
+    '넵': chaePrefix,
+    '냐': chaePrefix,
+    '님': chaePrefix,
+    '니': chaePrefix,
+    '다': "다" + chaePrefix,
+    '까': "까" + chaePrefix,
+    '네': "네" + chaePrefix,
+    '야': "야" + chaePrefix,
+    '꺼': "꺼" + chaePrefix,
+    '래': "래" + chaePrefix,
+    '해': "해" + chaePrefix,
+    '지': "지" + chaePrefix,
+    '라': "라" + chaePrefix,
+    '요': "요" + chaePrefix,
+    '가': "가" + chaePrefix,
+    '데': "데" + chaePrefix,
+    '돼': "돼" + chaePrefix,
+    '줘': "줘" + chaePrefix,
+    '마': "마" + chaePrefix,
+    '와': "와" + chaePrefix,
+    '어': "어" + chaePrefix,
+    '자': "자" + chaePrefix,
+    '죠': "죠" + chaePrefix,
+    '서': "서" + chaePrefix,
+    '게': "게" + chaePrefix,
+    '듯': "듯" + chaePrefix,
     // '임': "임냥", disabled due addNyangAtMWord function
 }
 
@@ -80,16 +82,16 @@ function replacePunctuation(input: string): string { // yeah I used gpt to write
         const firstChar = p2[0];
         let transformed;
         
-        if (firstChar === '?') transformed = '냥?';
-        else if (firstChar === '!') transformed = '냥!';
-        else if (firstChar === ',') transformed = '냥,';
-        else if (firstChar === '.') transformed = '냥.';
-        else if (firstChar === ';') transformed = '냥;';
-        else if (firstChar === '~') transformed = '냥~';
-        else if (firstChar === '^') transformed = '냥^';
-        else if (firstChar === '@') transformed = '냥@';
-        else if (firstChar === '(') transformed = '냥(';
-        else if (firstChar === ')') transformed = '냥)';
+        if (firstChar === '?') transformed = chaePrefix + '?';
+        else if (firstChar === '!') transformed = chaePrefix + '!';
+        else if (firstChar === ',') transformed = chaePrefix + ',';
+        else if (firstChar === '.') transformed = chaePrefix + '.';
+        else if (firstChar === ';') transformed = chaePrefix + ';';
+        else if (firstChar === '~') transformed = chaePrefix + '~';
+        else if (firstChar === '^') transformed = chaePrefix + '^';
+        else if (firstChar === '@') transformed = chaePrefix + '@';
+        else if (firstChar === '(') transformed = chaePrefix + '(';
+        else if (firstChar === ')') transformed = chaePrefix + ')';
         else transformed = p2;
         
         return p1 + transformed + p2.slice(1);
@@ -113,7 +115,7 @@ function addNyangAtMWord(sentence: string): string { // Also from GPT
             const jongseong = baseCode % 28;
 
             if (jongseong === 16) {
-                return baseWord + "냥" + punctuation;
+                return baseWord + chaePrefix + punctuation;
             }
         }
 
