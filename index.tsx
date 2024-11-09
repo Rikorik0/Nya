@@ -1,9 +1,8 @@
-import "./styles.css";
-
+import { Settings } from "@api/Settings";
 import { addPreSendListener, removePreSendListener } from "@api/MessageEvents";
-import definePlugin from "@utils/types";
+import definePlugin, { OptionType } from "@utils/types";
 
-var chaePrefix = "냥"; // make your own custom ~체, you can put like 허~접♥ on it
+var chaePrefix = Settings.plugins.Nya.chaePrefixValue;
 
 var nyaWords = {
     '나': "냐",
@@ -69,6 +68,42 @@ var nyaWords2 = {
     // '임': "임냥", disabled due addNyangAtMWord function
 }
 
+function refreshPrefix() { // someone help me fix these spaghetti
+    chaePrefix = Settings.plugins.Nya.chaePrefixValue
+
+    nyaWords2 = {
+        '내': chaePrefix,
+        '넹': chaePrefix,
+        '넴': chaePrefix,
+        '넵': chaePrefix,
+        '냐': chaePrefix,
+        '님': chaePrefix,
+        '니': chaePrefix,
+        '다': "다" + chaePrefix,
+        '까': "까" + chaePrefix,
+        '네': "네" + chaePrefix,
+        '야': "야" + chaePrefix,
+        '꺼': "꺼" + chaePrefix,
+        '래': "래" + chaePrefix,
+        '해': "해" + chaePrefix,
+        '지': "지" + chaePrefix,
+        '라': "라" + chaePrefix,
+        '요': "요" + chaePrefix,
+        '가': "가" + chaePrefix,
+        '데': "데" + chaePrefix,
+        '돼': "돼" + chaePrefix,
+        '줘': "줘" + chaePrefix,
+        '마': "마" + chaePrefix,
+        '와': "와" + chaePrefix,
+        '어': "어" + chaePrefix,
+        '자': "자" + chaePrefix,
+        '죠': "죠" + chaePrefix,
+        '서': "서" + chaePrefix,
+        '게': "게" + chaePrefix,
+        '듯': "듯" + chaePrefix,
+    }
+}
+
 var nyaCharacters = [
     '.',
     ',',
@@ -115,7 +150,7 @@ function addNyangAtMWord(sentence: string): string { // Also from GPT
             const jongseong = baseCode % 28;
 
             if (jongseong === 16) {
-                return baseWord + chaePrefix + punctuation;
+                return baseWord + Settings.plugins.Nya.chaePrefixValue + punctuation;
             }
         }
 
@@ -162,6 +197,15 @@ export default definePlugin({
             name: "Rikoring",
         },
     ],
+
+    options: {
+        chaePrefixValue: {
+            type: OptionType.STRING,
+            description: "~체 Prefix",
+            default: "냥",
+            onChange: refreshPrefix
+        }
+    },
 
     start() {
         this.preSend = addPreSendListener(async (_, message) => {
