@@ -51,6 +51,14 @@ Now, enable `Nya` plugin in plugin settings
 
 **Make sure to refresh your vencord client after enable it**
 
+https://github.com/user-attachments/assets/5c68ac26-2427-4a41-a048-bcb206b917e0
+
+You can customize your ~체 from Nya plugin settings!
+(Since 1.3 version)
+
+## Customize your plguin!
+
+
 # Disclaimer
 
 *I don't recommend to use this plugin, it has a very dirty script. also it may not work. I made this plugin when I was learning TypeScript*
