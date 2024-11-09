@@ -36,81 +36,42 @@ var nyaWords = {
 }
 
 var nyaWords2 = {
-    '내': chaePrefix,
-    '넹': chaePrefix,
-    '넴': chaePrefix,
-    '넵': chaePrefix,
-    '냐': chaePrefix,
-    '님': chaePrefix,
-    '니': chaePrefix,
-    '다': "다" + chaePrefix,
-    '까': "까" + chaePrefix,
-    '네': "네" + chaePrefix,
-    '야': "야" + chaePrefix,
-    '꺼': "꺼" + chaePrefix,
-    '래': "래" + chaePrefix,
-    '해': "해" + chaePrefix,
-    '지': "지" + chaePrefix,
-    '라': "라" + chaePrefix,
-    '요': "요" + chaePrefix,
-    '가': "가" + chaePrefix,
-    '데': "데" + chaePrefix,
-    '돼': "돼" + chaePrefix,
-    '줘': "줘" + chaePrefix,
-    '마': "마" + chaePrefix,
-    '와': "와" + chaePrefix,
-    '어': "어" + chaePrefix,
-    '자': "자" + chaePrefix,
-    '죠': "죠" + chaePrefix,
-    '서': "서" + chaePrefix,
-    '게': "게" + chaePrefix,
-    '듯': "듯" + chaePrefix,
-    // '임': "임냥", disabled due addNyangAtMWord function
-}
+    '내': () => chaePrefix,
+    '넹': () => chaePrefix,
+    '넴': () => chaePrefix,
+    '넵': () => chaePrefix,
+    '냐': () => chaePrefix,
+    '님': () => chaePrefix,
+    '니': () => chaePrefix,
+    '다': () => "다" + chaePrefix,
+    '까': () => "까" + chaePrefix,
+    '네': () => "네" + chaePrefix,
+    '야': () => "야" + chaePrefix,
+    '꺼': () => "꺼" + chaePrefix,
+    '래': () => "래" + chaePrefix,
+    '해': () => "해" + chaePrefix,
+    '지': () => "지" + chaePrefix,
+    '라': () => "라" + chaePrefix,
+    '요': () => "요" + chaePrefix,
+    '가': () => "가" + chaePrefix,
+    '데': () => "데" + chaePrefix,
+    '돼': () => "돼" + chaePrefix,
+    '줘': () => "줘" + chaePrefix,
+    '마': () => "마" + chaePrefix,
+    '와': () => "와" + chaePrefix,
+    '어': () => "어" + chaePrefix,
+    '자': () => "자" + chaePrefix,
+    '죠': () => "죠" + chaePrefix,
+    '서': () => "서" + chaePrefix,
+    '게': () => "게" + chaePrefix,
+    '듯': () => "듯" + chaePrefix,
+};
 
 function refreshPrefix() { // someone help me fix these spaghetti
     chaePrefix = Settings.plugins.Nya.chaePrefixValue
-
-    nyaWords2 = {
-        '내': chaePrefix,
-        '넹': chaePrefix,
-        '넴': chaePrefix,
-        '넵': chaePrefix,
-        '냐': chaePrefix,
-        '님': chaePrefix,
-        '니': chaePrefix,
-        '다': "다" + chaePrefix,
-        '까': "까" + chaePrefix,
-        '네': "네" + chaePrefix,
-        '야': "야" + chaePrefix,
-        '꺼': "꺼" + chaePrefix,
-        '래': "래" + chaePrefix,
-        '해': "해" + chaePrefix,
-        '지': "지" + chaePrefix,
-        '라': "라" + chaePrefix,
-        '요': "요" + chaePrefix,
-        '가': "가" + chaePrefix,
-        '데': "데" + chaePrefix,
-        '돼': "돼" + chaePrefix,
-        '줘': "줘" + chaePrefix,
-        '마': "마" + chaePrefix,
-        '와': "와" + chaePrefix,
-        '어': "어" + chaePrefix,
-        '자': "자" + chaePrefix,
-        '죠': "죠" + chaePrefix,
-        '서': "서" + chaePrefix,
-        '게': "게" + chaePrefix,
-        '듯': "듯" + chaePrefix,
-    }
 }
 
-var nyaCharacters = [
-    '.',
-    ',',
-    '?',
-    '!',
-    ' ',
-]
+var punctuationMarks = [".", ",", "?", "!", ";", "~", "^", "@", "(", ")", " "];
 
 function replacePunctuation(input: string): string { // yeah I used gpt to write this I don't know RegEx
     return input.replace(/(^|\s)([?!,.;~^@()]+)/g, (match, p1, p2) => {
@@ -160,20 +121,14 @@ function addNyangAtMWord(sentence: string): string { // Also from GPT
 
 function Nyaize(originalMessage) {
     for (let key in nyaWords2) {
-        originalMessage = originalMessage.replaceAll(key+".", nyaWords2[key]+".") // yeah I gotta optimize these
-        originalMessage = originalMessage.replaceAll(key+",", nyaWords2[key]+",")
-        originalMessage = originalMessage.replaceAll(key+"?", nyaWords2[key]+"?")
-        originalMessage = originalMessage.replaceAll(key+"!", nyaWords2[key]+"!")
-        originalMessage = originalMessage.replaceAll(key+";", nyaWords2[key]+";")
-        originalMessage = originalMessage.replaceAll(key+"~", nyaWords2[key]+"~")
-        originalMessage = originalMessage.replaceAll(key+"^", nyaWords2[key]+"^")
-        originalMessage = originalMessage.replaceAll(key+"@", nyaWords2[key]+"@")
-        originalMessage = originalMessage.replaceAll(key+"(", nyaWords2[key]+"(")
-        originalMessage = originalMessage.replaceAll(key+")", nyaWords2[key]+")")
-        originalMessage = originalMessage.replaceAll(key+" ", nyaWords2[key]+" ")
+        const prefixValue = nyaWords2[key]();
+
+        for (let mark of punctuationMarks) {
+            originalMessage = originalMessage.replaceAll(key + mark, prefixValue + mark);
+        }
 
         if (originalMessage.endsWith(key)) {
-            originalMessage = originalMessage.slice(0, -1) + nyaWords2[key];
+            originalMessage = originalMessage.slice(0, -1) + prefixValue;
         }
     }
 
