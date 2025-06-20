@@ -3,6 +3,10 @@ Cat mode for discord
 (Vencord custom plugin)
 *Also insipred from misskey cat mode*
 
+# Discontinued + Not working anymore!
+Since vencord removed event where you can change user's message before send this plugin will not work anymore.
+Please remove this plugin from your vencord (it will give you error since it's using deleted event when you're going to build it)
+
 # What does it do?
 Add "냥" after "다" (and etc.) if after "다" character is "," or "." or "?" or "!" or ";" or space or there's no text
 
