@@ -175,8 +175,8 @@ export default definePlugin({
                     return;
                 }
 
-                const match = value.match(/(\n+)$/);
-                const newlines = match ? match[0] : '';
+                const newlineMatch = value.match(/(\n+)$/);
+                const newlines = newlineMatch ? newlineMatch[0] : '';
 
                 if (newlines.length > 0) {
                     value = value.slice(0, -newlines.length);
