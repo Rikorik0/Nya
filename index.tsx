@@ -162,7 +162,28 @@ export default definePlugin({
         this.preSend = addMessagePreSendListener(async (_, message) => {
             if (!message.content) return;
 
-            message.content = await Nyaize(message.content);
+            const contents = message.content.split('```');
+            message.content = '';
+
+            contents.forEach((value, index) => {
+                if (contents.at[-1] === '\\') return;
+
+                if (value === '') return;
+
+                if (index % 2 == 1) {
+                    message.content = message.content + '```' + value + '```';
+                    return;
+                }
+
+                const match = value.match(/(\n+)$/);
+                const newlines = match ? match[0] : '';
+
+                if (newlines.length > 0) {
+                    value = value.slice(0, -newlines.length);
+                }
+
+                message.content = message.content + Nyaize(value) + newlines;
+            });
         });
     },
 
